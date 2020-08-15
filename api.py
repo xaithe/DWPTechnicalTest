@@ -22,7 +22,7 @@ def get_users_in_radius():
         except ValueError:
             return "Error: miles must be a valid float"
     else:
-        return "Error: No radius provided. Please specify a radius."
+        miles = 50
 
     return jsonify(geocoding.users_in_radius(user_list, miles))
 
