@@ -1,5 +1,5 @@
 from flask import Flask, jsonify, request
-import users
+import bpdts_integration as bpdts
 import geocoding
 
 app = Flask(__name__)
@@ -10,11 +10,11 @@ def index():
 
 @app.route('/london', methods=['GET'])
 def get_users_in_london():
-    return jsonify(users.get_city_users("London"))
+    return jsonify(bpdts.get_city_users("London"))
 
 @app.route('/radius', methods=['GET'])
 def get_users_in_radius():
-    user_list = users.get_users()
+    user_list = bpdts.get_users()
     
     if "miles" in request.args:
         miles = int(request.args["miles"])
