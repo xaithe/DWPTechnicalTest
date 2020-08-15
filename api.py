@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 import users
 import geocoding
 
@@ -15,8 +15,13 @@ def get_users_in_london():
 @app.route('/radius', methods=['GET'])
 def get_users_in_radius():
     user_list = users.get_users()
-   
-    return jsonify(geocoding.users_in_radius(user_list, 100))
+    
+    if "miles" in request.args:
+        miles = int(request.args["miles"])
+    else:
+        return "Error: No radius provided. Please specify a radius."
+
+    return jsonify(geocoding.users_in_radius(user_list, miles))
 
 if __name__ == '__main__':
     app.run(debug=True)
