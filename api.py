@@ -10,7 +10,7 @@ def index():
 
 @app.route('/london', methods=['GET'])
 def get_users_in_london():
-    return jsonify(bpdts.get_city_users("London"))
+    return jsonify(bpdts.get_city_users("London")), 200
 
 @app.route('/radius', methods=['GET'])
 def get_users_in_radius():
@@ -20,11 +20,11 @@ def get_users_in_radius():
         try:
             miles = float(request.args["miles"])
         except ValueError:
-            return "Error: miles must be a valid float"
+            return "Error: miles must be a valid float", 400
     else:
         miles = 50
 
-    return jsonify(geocoding.users_in_radius(user_list, miles))
+    return jsonify(geocoding.users_in_radius(user_list, miles)), 200
 
 if __name__ == '__main__':
     app.run(debug=True)
