@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 @app.route('/',methods=['GET'])
 def index():
-    return "<h1>DWP Tech Test API</h1><p>This  is an API for the DWP technical test</p>"
+    return "<h1>DWP Tech Test API</h1><p>This is an API for the DWP technical test</p>"
 
 @app.route('/london', methods=['GET'])
 def get_users_in_london():
