@@ -27,5 +27,11 @@ class TestRadius(unittest.TestCase):
 
         self.assertEqual(len(result), 1)
 
+    def test_multiple_users(self):
+        user_list = [VALID_USER, INVALID_USER, EXACT_USER]
+        result = geocoding.users_in_radius(user_list, RADIUS)
+
+        self.assertEqual(len(result), 2)
+
 if __name__ == '__main__':
     unittest.main()
